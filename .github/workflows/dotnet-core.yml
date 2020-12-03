@@ -42,7 +42,10 @@ jobs:
     - name: Test
       run: dotnet test AnimalAdoption.Web.Portal.UnitTests --no-restore --verbosity normal
 
+    - name: Publish web portal
+      run: dotnet publish AnimalAdoption.Web.Portal -o AnimalAdoption.Web.Portal/published
+
     - uses: actions/upload-artifact@v2
       with:
         name: artifact
-        path: /home/runner/work/animal-adoption-portal/animal-adoption-portal/AnimalAdoption.Web.Portal/bin/Release/netcoreapp3.1/AnimalAdoption.Web.Portal.dll
+        path: ${{ github.workspace }}/AnimalAdoption.Web.Portal/published
