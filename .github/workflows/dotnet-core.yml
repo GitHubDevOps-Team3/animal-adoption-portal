@@ -26,8 +26,12 @@ jobs:
       with:
         dotnet-version: 3.1.301
 
+#    - name: Package up Project
+#      run: dotnet pack --configuration Release ${{env.LogicProjectPath}}
+
+#     run: dotnet pack -o . -p:PackageVersion=${{ env.VERSION }}.${{ github.run_number }}
     - name: Package up Project
-      run: dotnet pack --configuration Release ${{env.LogicProjectPath}}
+      run: dotnet pack -o . -p:PackageVersion=${{ env.VERSION }}.${{ github.run_number }}
 
     - name: Push package to GitHub registry
       run: dotnet nuget push ${{env.LogicProjectPath}}/**/*.nupkg --skip-duplicate
